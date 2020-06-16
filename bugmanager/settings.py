@@ -119,3 +119,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 腾讯短信签名
+TENCENT_SMS_APP_ID = 66666666
+TENCENT_SMS_APP_KEY = '66666666666666'
+TENCENT_SMS_SIGN = 'Python之路'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
