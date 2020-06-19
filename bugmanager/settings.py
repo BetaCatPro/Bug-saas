@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app01.apps.App01Config',
+    'web.apps.WebConfig',
+    'college.apps.CollegeConfig',
 ]
 
 MIDDLEWARE = [
@@ -120,10 +123,55 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# 下面是django项目settings中的关于django-redis模块的配置
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://12.20.18.1:6379",  # 安装redis的主机的 IP 和 端口
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {
+                "max_connections": 1000,
+                "encoding": 'utf-8'
+            },
+            "PASSWORD": "abcdef"  # redis密码
+        }
+    }
+}
+
 # 腾讯短信签名
 TENCENT_SMS_APP_ID = 66666666
 TENCENT_SMS_APP_KEY = '66666666666666'
 TENCENT_SMS_SIGN = 'Python之路'
+TENCENT_SMS_TEMPLATE = {
+    'register': 561723,
+    'login': 561737
+}
+
+# 腾讯云对象存储秘钥
+TENCENT_COS_APPID = 1302343214
+TENCENT_COS_ID = 'asdf'  # 替换为用户的 secretId
+TENCENT_COS_KEY = 'safdasf'  # 替换为用户的 secretKey
+
+# 生成支付宝支付订单链接的配置
+ALI_APPID = 1
+ALI_PRI_KEY_PATH = 1
+ALI_PUB_KEY_PATH = 1
+ALI_RETURN_URL = 1
+ALI_NOTIFY_URL = 1
+ALI_GATEWAY = 1
+
+# 登录白名单：无需登录就可以访问的页面#####
+WHITE_REGEX_URL_LIST = [
+    "/register/",
+    "/login/",
+    "/login/sms/",
+    "/send/sms/",
+    "/image/code/",
+    "/index/",
+    "/price/",
+    "/",
+]
 
 try:
     from .local_settings import *

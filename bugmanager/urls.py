@@ -18,4 +18,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r'^app01/', include('app01.urls', namespace='app01')),
+    path(r'^college/', include('college.urls', namespace='college')),
+    path(r'^', include('web.urls')),
 ]

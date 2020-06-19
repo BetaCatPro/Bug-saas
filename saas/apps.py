@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class SaasConfig(AppConfig):
-    name = 'saas'
+class WebConfig(AppConfig):
+    name = 'web'
